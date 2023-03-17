@@ -3,7 +3,7 @@
   "description": "ClickToPay for React",
   "author": "wellingtonsilverio",
   "keywords": ["react", "components", "ui", "clicktopay", "mastercard"],
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -16,7 +16,6 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "sass": "node-sass src/lib/components/styles/main.scss src/App.css -w",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
     "eject": "react-scripts eject"
   },
@@ -43,8 +42,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "web-vitals": "^2.1.4",
-    "@babel/polyfill": "^7.12.1",
-    "node-sass": "^5.0.0"
+    "@babel/polyfill": "^7.12.1"
   },
   "devDependencies": {
     "react": "^18.2.0",

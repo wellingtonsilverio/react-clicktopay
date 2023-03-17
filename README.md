@@ -8,7 +8,7 @@ npm install --save react-clicktopay
 import ReactClickToPay from 'react-clicktopay';
 
 function App() {
-    return <ReactClickToPay><App /></ReactClickToPay>
+    return <ReactClickToPay srcDpaId={srcDpaId} dpaLocale={dpaLocale}><App /></ReactClickToPay>
 }
 
 export default App;
