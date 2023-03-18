@@ -1,3 +1,5 @@
+import React from "react";
+
 const useScript = src => {
     const [status, setStatus] = React.useState(src ? 'loading' : 'idle');
   
@@ -45,3 +47,5 @@ const useScript = src => {
   
     return status;
   };
+
+  export default useScript;

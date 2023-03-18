@@ -1,6 +1,7 @@
 import React from "react";
+import useScript from "../hooks/useScript";
 
-export const ReactClickToPay = ({ srcDpaId, dpaLocale, children }) => {
+export const Provider = ({ srcDpaId, dpaLocale, children }) => {
     const status = useScript(`https://src.mastercard.com/srci/integration/2/lib.js?srcDpaId=${srcDpaId}&locale=${dpaLocale}`);
     
     React.useEffect(() => {

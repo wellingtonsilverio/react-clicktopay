@@ -3,7 +3,7 @@
   "description": "ClickToPay for React",
   "author": "wellingtonsilverio",
   "keywords": ["react", "components", "ui", "clicktopay", "mastercard"],
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
