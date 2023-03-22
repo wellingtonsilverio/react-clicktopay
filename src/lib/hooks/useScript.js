@@ -1,8 +1,8 @@
 import React from "react";
 
-const useScript = (src, name) => {
+const useScript = (src, name, options = {}) => {
     const [status, setStatus] = React.useState(src ? 'loading' : 'idle');
-    const [lib, setLib] = useState();
+    const [lib, setLib] = React.useState();
   
     React.useEffect(() => {
       if (!src) {
@@ -18,6 +18,11 @@ const useScript = (src, name) => {
         script.async = true;
         script.onload = () => setLib({ [name]: window[name] })
         script.setAttribute('data-status', 'loading');
+        if (options) {
+          for (const option in options) {
+            script[option] = options[option];
+          }
+        }
         document.body.appendChild(script);
   
         const setDataStatus = event => {
@@ -47,7 +52,7 @@ const useScript = (src, name) => {
       };
     }, [src]);
   
-    return { status, lib };
+    return [ status, lib ];
   };
 
   export default useScript;

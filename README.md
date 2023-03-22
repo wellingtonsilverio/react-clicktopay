@@ -13,3 +13,37 @@ function App() {
 
 export default App;
 ```
+
+# Methods
+
+Get Cards
+```js
+props.getCards();
+```
+
+# UI
+
+Click to Pay Button
+```js
+<ClickToPayButton />
+```
+
+Click to Pay Mark
+```js
+<ClickToPayMark />
+```
+
+OTP Input
+```js
+<OPTInput />
+```
+
+Card List
+```js
+<CardList />
+```
+
+Single Card
+```js
+<SingleCard />
+```

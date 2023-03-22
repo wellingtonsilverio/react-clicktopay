@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App({getCards}) {
+  getCards().then(a => console.log("GET CARD", a));
   return (
     <div className="App">
       <header className="App-header">
