@@ -5,10 +5,25 @@ import OPTInput from "./components/OPTInput";
 import CardList from "./components/CardList";
 import SingleCard from "./components/SingleCard";
 import getCards from "./functions/getCards";
+import idLookup from "./functions/idLookup";
+import initiateValidation from "./functions/initiateValidation";
+import validate from "./functions/validate";
+import checkoutWithNewCard from "./functions/checkoutWithNewCard";
+import encryptCard from "./functions/encryptCard";
+import checkoutWithCard from "./functions/checkoutWithCard";
+import signOut from "./functions/signOut";
 import useLink from "./hooks/useLink";
 import useScript from "./hooks/useScript";
 
-export const Provider = ({ srcDpaId, dpaLocale, debug, children }) => {
+export const Provider = ({
+  srcDpaId,
+  dpaLocale,
+  dpaPresentationName,
+  dpaName,
+  cardBrands,
+  debug,
+  children
+}) => {
   const [instance, setInstance] = useState();
   const [click2PayStatus, click2PayLib] = useScript(
     debug
@@ -35,11 +50,11 @@ export const Provider = ({ srcDpaId, dpaLocale, debug, children }) => {
         const result = await click2payInstance.init({
           srcDpaId,
           dpaData: {
-            dpaPresentationName: "Desenvolve",
-            dpaName: "Desenvolve"
+            dpaPresentationName,
+            dpaName
           },
           dpaTransactionOptions: { dpaLocale },
-          cardBrands: ["mastercard", "visa", "amex", "discover"]
+          cardBrands
         });
         console.log("click2payInstance result", result);
       } catch (error) {
@@ -54,15 +69,70 @@ export const Provider = ({ srcDpaId, dpaLocale, debug, children }) => {
     }
   }, [click2PayStatus]);
 
-  const ChildrenWithProps = (props) =>
-    React.Children.map(children, (child) => {
+  const ChildrenWithProps = (props) => {
+    return React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, { clickToPay: props });
       }
       return child;
     });
+  };
 
-  return <ChildrenWithProps getCards={() => getCards(instance)} />;
+  return (
+    <ChildrenWithProps
+      getCards={() => getCards(instance)}
+      idLookup={(email, PhoneNumber) => idLookup(instance, email, PhoneNumber)}
+      initiateValidation={(requestedValidationChannelId) =>
+        initiateValidation(instance, requestedValidationChannelId)
+      }
+      validate={(OTPvalue) => validate(instance, OTPvalue)}
+      checkoutWithNewCard={(
+        encryptedCard,
+        cardBrand,
+        consumer,
+        windowRef,
+        dpaTransactionOptions
+      ) =>
+        checkoutWithNewCard(
+          instance,
+          encryptedCard,
+          cardBrand,
+          consumer,
+          windowRef,
+          dpaTransactionOptions
+        )
+      }
+      encryptCard={(
+        primaryAccountNumber,
+        panExpirationMonth,
+        panExpirationYear,
+        cardSecurityCode,
+        cardholderFirstName,
+        cardholderLastName,
+        billingAddress
+      ) =>
+        encryptCard(
+          instance,
+          primaryAccountNumber,
+          panExpirationMonth,
+          panExpirationYear,
+          cardSecurityCode,
+          cardholderFirstName,
+          cardholderLastName,
+          billingAddress
+        )
+      }
+      checkoutWithCard={(srcDigitalCardId, windowRef, DpaTransactionOptions) =>
+        checkoutWithCard(
+          instance,
+          srcDigitalCardId,
+          windowRef,
+          DpaTransactionOptions
+        )
+      }
+      signOut={() => signOut(instance)}
+    />
+  );
 };
 
 export default {

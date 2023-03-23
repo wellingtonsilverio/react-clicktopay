@@ -5,14 +5,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+const providerProps = {
+  srcDpaId: "00a9ee92-7740-4f61-99d6-2ce3f98e4c8a",
+  dpaLocale: "pt-BR",
+  dpaPresentationName: "Desenvolve",
+  dpaName: "Desenvolve",
+  cardBrands: ["mastercard", "visa", "amex", "discover"]
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ReactClickToPay.Provider
-      srcDpaId="00a9ee92-7740-4f61-99d6-2ce3f98e4c8a"
-      dpaLocale="pt-BR"
-      debug
-    >
+    <ReactClickToPay.Provider debug {...providerProps}>
       <App />
     </ReactClickToPay.Provider>
   </React.StrictMode>

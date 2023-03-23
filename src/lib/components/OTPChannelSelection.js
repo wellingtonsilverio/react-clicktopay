@@ -1,6 +1,6 @@
 function OTPChannelSelection(props) {
   // TODO
-  return <div {...props} />;
+  return <src-otp-channel-selection {...props} />;
 }
 
 export default OTPChannelSelection;

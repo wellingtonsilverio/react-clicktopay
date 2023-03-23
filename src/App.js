@@ -1,13 +1,15 @@
 import ClickToPayButton from "./lib/components/ClickToPayButton";
 import ClickToPayMark from "./lib/components/ClickToPayMark";
 import OPTInput from "./lib/components/OPTInput";
+import OTPChannelSelection from "./lib/components/OTPChannelSelection";
 import CardList from "./lib/components/CardList";
 import SingleCard from "./lib/components/SingleCard";
 
 import "./App.css";
 
 function App({ clickToPay }) {
-  clickToPay.getCards().then((a) => console.log("GET CARD", a));
+  clickToPay.getCards().then((cards) => console.log("GET CARD", cards));
+
   return (
     <div className="App">
       <header className="App-header">
@@ -26,6 +28,11 @@ function App({ clickToPay }) {
       <section>
         <h3>OPT Input</h3>
         <OPTInput />
+      </section>
+
+      <section>
+        <h3>OTP Channel Selection</h3>
+        <OTPChannelSelection />
       </section>
 
       <section>
