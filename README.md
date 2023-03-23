@@ -8,17 +8,18 @@ npm install --save react-clicktopay
 import ReactClickToPay from 'react-clicktopay';
 
 function App() {
-    return <ReactClickToPay.Provider srcDpaId={srcDpaId} dpaLocale={dpaLocale}><App /></ReactClickToPay.Provider>
+    return <ReactClickToPay.Provider srcDpaId={srcDpaId} dpaLocale={dpaLocale} debug><App /></ReactClickToPay.Provider>
 }
 
 export default App;
 ```
+debug: use sandbox.src.mastercard.com
 
 # Methods
 
 Get Cards
 ```js
-props.getCards();
+props.clickToPay.getCards();
 ```
 
 # UI
